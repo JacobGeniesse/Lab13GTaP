@@ -100,6 +100,8 @@ public class WeatherLoader : MonoBehaviour
             case "clouds":
                 chosenInt = 1;
                 break;
+            case "overcastclouds":
+            case "overcast clouds":
             case "showerrain":
             case "shower rain":
             case "drizzle":
