@@ -86,12 +86,22 @@ public class WeatherLoader : MonoBehaviour
         //Use a switch statement with the various weather conditions to set that value
         switch (skyToSet.weather.ToLower())
         {
+            case "clear sky":
+            case "clearsky":
             case "clear":
                 chosenInt = 0;
                 break;
+            case "few clouds":
+            case "fewclouds":
+            case "brokenclouds":
+            case "broken clouds":
+            case "scattered clouds":
+            case "scatteredclouds":
             case "clouds":
                 chosenInt = 1;
                 break;
+            case "showerrain":
+            case "shower rain":
             case "drizzle":
                 chosenInt = 2;
                 break;
