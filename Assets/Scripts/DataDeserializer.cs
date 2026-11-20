@@ -30,8 +30,15 @@ public class DataDeserializer : MonoBehaviour
     {
         var rootElement = XElement.Parse(xmlString);
         //XmlSerializer serializer = new XmlSerializer(typeof(WeatherData));
-        Debug.Log(xmlString);
+        //Debug.Log(xmlString);
         XElement xmlElement = rootElement.Element("city");
+
+        string cityName = "null";
+
+        foreach(var cityElement in rootElement.Elements("city"))
+        {
+            cityName = cityElement.Attribute("name").Value.ToString();
+        }
 
         string weatherName = "null";
 
@@ -42,11 +49,11 @@ public class DataDeserializer : MonoBehaviour
 
         XElement timeZoneValue = xmlElement.Element("timezone");
 
-        Debug.Log(weatherName);
+        //Debug.Log(weatherName);
 
         float tVVal = float.Parse(timeZoneValue.Value.ToString());
 
-        WeatherData returnedData = new WeatherData(weatherName, tVVal);
+        WeatherData returnedData = new WeatherData(cityName, weatherName, tVVal);
 
         return returnedData;
     }
@@ -55,6 +62,8 @@ public class DataDeserializer : MonoBehaviour
 [System.Serializable]
 public class WeatherData
 {
+
+    public string cityName;
     public string weather;
     public float timeZone;
 
@@ -64,8 +73,9 @@ public class WeatherData
 
     }
 
-    public WeatherData(string incomingWeather, float newTimeZone)
+    public WeatherData(string name, string incomingWeather, float newTimeZone)
     {
+        cityName = name;
         weather = incomingWeather;
         timeZone = newTimeZone;
     }
