@@ -394,8 +394,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 24d76106ebc1bd947a3fed862f899b82, type: 2}
   skyboxMatNight:
   - {fileID: 2100000, guid: 48d4f62e2d5af1643a431d2f4b07ccbb, type: 2}
-  - {fileID: 2100000, guid: 80fa4f34db87aad4d93c45188b19bfd6, type: 2}
-  - {fileID: 2100000, guid: 6eecb3bb77b3f7a43a504fceda3b0b5f, type: 2}
+  - {fileID: 2100000, guid: d1fdb8e44b28da34d9e922cca0bc740e, type: 2}
+  - {fileID: 2100000, guid: 7a8675eb396637d43b4ba0a69cc715a5, type: 2}
   - {fileID: 2100000, guid: b5a27fa4b11bfb24cbc6daff3802c229, type: 2}
   - {fileID: 2100000, guid: 8426cf3d3939a7d419671f3d5c269c0b, type: 2}
   - {fileID: 2100000, guid: 8426cf3d3939a7d419671f3d5c269c0b, type: 2}
