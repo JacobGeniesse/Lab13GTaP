@@ -4,14 +4,13 @@ using System.Xml.Serialization;
 using System.Xml.Linq;
 using System.IO;
 using System.Linq;
-using NUnit.Framework.Interfaces;
-using Unity.VisualScripting;
 using System;
 
 public class DataDeserializer : MonoBehaviour
 {
-    public static DataDeserializer instance;
+    public static DataDeserializer instance; //Singleton instance
 
+    //Singleton setup
     private void Awake()
     {
         if(instance == null)
@@ -25,54 +24,54 @@ public class DataDeserializer : MonoBehaviour
     }
 
 
-
+    //Public function for deserializing the data recieved from the weather service
     public WeatherData DeserializeData(string xmlString)
     {
-        var rootElement = XElement.Parse(xmlString);
-        //XmlSerializer serializer = new XmlSerializer(typeof(WeatherData));
-        //Debug.Log(xmlString);
-        XElement xmlElement = rootElement.Element("city");
+        var rootElement = XElement.Parse(xmlString); //Parse the string data given to the func
 
-        string cityName = "null";
+        //Debug.Log(xmlString); //Debug line
 
-        foreach(var cityElement in rootElement.Elements("city"))
+        string cityName = "null"; //Returned name of the city in question
+
+        foreach(var cityAspect in rootElement.Elements("city"))
         {
-            cityName = cityElement.Attribute("name").Value.ToString();
+            cityName = cityAspect.Attribute("name").Value.ToString(); //Find the city name as a part of the stored city class in the xml
         }
 
-        string weatherName = "null";
+        string weatherName = "null"; //Returned name of the active weather pattern
 
         foreach (var weatherType in rootElement.Elements("weather"))
         {
-            weatherName = weatherType.Attribute("value").Value.ToString();
+            weatherName = weatherType.Attribute("value").Value.ToString(); //Find the documented weather pattern as a part of the weather class in the xml
         }
 
-        XElement timeZoneValue = xmlElement.Element("timezone");
+        XElement cityElement = rootElement.Element("city"); //grab the root element of the city
 
-        //Debug.Log(weatherName);
+        XElement timeZoneValue = cityElement.Element("timezone"); //from that data grab the timezone
 
-        float tVVal = float.Parse(timeZoneValue.Value.ToString());
+        //Debug.Log(weatherName); //Debug line
 
-        WeatherData returnedData = new WeatherData(cityName, weatherName, tVVal);
+        float tVVal = float.Parse(timeZoneValue.Value.ToString()); //Transform the timezone's string into a float for returning
+
+        WeatherData returnedData = new WeatherData(cityName, weatherName, tVVal); //Create the Weather Data class to return
 
         return returnedData;
     }
 }
 
+
+//Class to return to other functions
 [System.Serializable]
 public class WeatherData
 {
+    public string cityName; //Name of the city
+    public string weather; //weather name of the city
+    public float timeZone; //Time zone the city is in
 
-    public string cityName;
-    public string weather;
-    public float timeZone;
+    //Empty Constructor
+    public WeatherData(){}
 
-
-    public WeatherData()
-    {
-
-    }
-
+    //Constructor with the name, weather pattern, and timezone
     public WeatherData(string name, string incomingWeather, float newTimeZone)
     {
         cityName = name;

@@ -4,8 +4,9 @@ using UnityEditor;
 [CustomEditor(typeof(WeatherLoader))]
 public class WeatherLoaderEditor : Editor
 {
-    private WeatherLoader weatherLoader;
+    private WeatherLoader weatherLoader; //targetted weather loader
 
+    //on enabling this grab the targetted weather loader
     private void OnEnable()
     {
         weatherLoader = (WeatherLoader)target;
@@ -15,6 +16,7 @@ public class WeatherLoaderEditor : Editor
     {
         base.OnInspectorGUI();
 
+        //When pressing the inspector button update the stored weather pattern
         if(GUILayout.Button("Update Current Weather"))
         {
             weatherLoader.EditorButton();
