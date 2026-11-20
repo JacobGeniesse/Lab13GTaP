@@ -6,15 +6,22 @@ using UnityEngine.Networking;
 
 public class WeatherManager
 {
-    private const string orlandoApi = "http://api.openweathermap.org/data/2.5/weather?lat=28.54&lon=-81.38&mode=xml&appid=e50998af823151e941eb919d65f53b0d"; //URL for Orlando's weather data
-    private const string newYorkApi = "http://api.openweathermap.org/data/2.5/weather?lat=40.73&lon=-73.94&mode=xml&appid=e50998af823151e941eb919d65f53b0d"; //URL for New York's weather data
-    private const string londonApi = "http://api.openweathermap.org/data/2.5/weather?lat=51.51&lon=-0.12&mode=xml&appid=e50998af823151e941eb919d65f53b0d"; //URL for London's weather data
-    private const string beijingApi = "http://api.openweathermap.org/data/2.5/weather?lat=39.92&lon=116.38&mode=xml&appid=e50998af823151e941eb919d65f53b0d"; //URL for Beijing's weather data
-    private const string seattleApi = "http://api.openweathermap.org/data/2.5/weather?lat=47.61&lon=-122.34&mode=xml&appid=e50998af823151e941eb919d65f53b0d"; //URL for seattle's weather data
+    private const string orlandoApi = "Insert API Key Here"; //URL for Orlando's weather data
+    private const string newYorkApi = "Insert API Key Here"; //URL for New York's weather data
+    private const string londonApi = "Insert API Key Here"; //URL for London's weather data
+    private const string beijingApi = "Insert API Key Here"; //URL for Beijing's weather data
+    private const string seattleApi = "Insert API Key Here"; //URL for seattle's weather data
 
     //Function to grab the information from the API of the weather data website
     private IEnumerator CallAPI(string url, Action<string> callback)
     {
+        if(url == "Insert API Key Here")
+        {
+            Debug.LogError("Replace this string with the corresponding API Key stored in the readme");
+            yield return null;
+        }
+
+
         //Using Unity's web request strea, request information from the URL
         using (UnityWebRequest request = UnityWebRequest.Get(url))
         {

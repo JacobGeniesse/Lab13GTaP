@@ -63,6 +63,10 @@ public class WeatherLoader : MonoBehaviour
     //Function called to set the city data
     public void OnXMLDataLoaded(string data)
     {
+        if(data == null)
+        {
+            return;
+        }
         WeatherData incomingdata = DataDeserializer.instance.DeserializeData(data); //Deserialize the incoming information
         togglableCities[currentData] = incomingdata; //for the current slot overwrite it with the incoming data
 
